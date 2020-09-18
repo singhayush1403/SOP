@@ -1,8 +1,30 @@
+{%load static%}
+<html>
+<body>
+
  <ul class="sidebar-nav">
   {% if user.is_authenticated %} 
      <li>User: {{ user.get_username }}</li>
-     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+     <center>
+     <li><img src="{% static "/images/crop1.jpg"%}" height=300/></li>
+     <li><img src="{% static "/images/crop2.jpg"%}" height=300/></li>
+     <li><img src="{% static "/images/crop3.jpg"%}" height=300/></li>
+     <li><img src="{% static "/images/crop4.jpg"%}"height=300/></li>
+     </center>
  {% else %}
      <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
    {% endif %}  
   </ul>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type = "text/javascript"> $(document).ready(function() {
+    $("img").on("click", function(event) {
+   
+        var x = event.pageX - this.offsetLeft;
+        var y = event.pageY - this.offsetTop;
+        alert("X Coordinate: " + x + " Y Coordinate: " + y);
+    });
+}); </script>
+  </body>
+
+  </html>
