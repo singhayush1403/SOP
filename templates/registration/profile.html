@@ -1,5 +1,8 @@
 {%load static%}
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="{%static 'style.css' %}">
+</head>
 <body>
 
  <ul class="sidebar-nav">
@@ -7,10 +10,12 @@
      <li>User: {{ user.get_username }}</li>
      <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
      <center>
+     <div id="wrapper">
      <li><img src="{% static "/images/crop1.jpg"%}" height=300/></li>
      <li><img src="{% static "/images/crop2.jpg"%}" height=300/></li>
      <li><img src="{% static "/images/crop3.jpg"%}" height=300/></li>
      <li><img src="{% static "/images/crop4.jpg"%}"height=300/></li>
+     </div>
      </center>
  {% else %}
      <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
@@ -19,10 +24,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type = "text/javascript"> $(document).ready(function() {
     $("img").on("click", function(event) {
-   
+
         var x = event.pageX - this.offsetLeft;
         var y = event.pageY - this.offsetTop;
-        alert("X Coordinate: " + x + " Y Coordinate: " + y);
+        //alert("X Coordinate: " + x + " Y Coordinate: " + y);
+        var div = document.createElement('div');
+    div.className = 'dot';
+    div.style.left = event.pageX + 'px';
+    div.style.top = event.pageY + 'px';
+    document.getElementById('wrapper').appendChild(div);
     });
 }); </script>
   </body>
